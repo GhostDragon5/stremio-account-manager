@@ -1,0 +1,196 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Backgrounds - True neutral slate */
+    --background: 222 10% 8%; /* #13151a - Almost black */
+    --card: 222 10% 10%; /* #17191f - Elevated surfaces */
+    --popover: 222 10% 10%;
+
+    /* Foreground - High contrast */
+    --foreground: 220 9% 98%; /* #f8f9fa - Near white */
+    --card-foreground: 220 9% 98%;
+    --popover-foreground: 220 9% 98%;
+
+    /* Primary - Professional blue (used sparingly) */
+    --primary: 217 91% 60%; /* #3b82f6 */
+    --primary-foreground: 220 9% 98%; /* White text on blue */
+
+    /* Secondary/Muted - Subtle states */
+    --secondary: 222 10% 14%; /* #1f2128 */
+    --secondary-foreground: 220 9% 98%;
+    --muted: 222 10% 14%;
+    --muted-foreground: 220 9% 62%; /* #9ca3af */
+
+    /* Accent - Hover states */
+    --accent: 222 10% 16%; /* #23252d */
+    --accent-foreground: 220 9% 98%;
+
+    /* Status colors */
+    --destructive: 0 84% 60%; /* #f87171 - Softer red */
+    --destructive-foreground: 220 9% 98%;
+
+    /* UI Elements */
+    --border: 222 10% 18%; /* #292b33 */
+    --input: 222 10% 18%;
+    --ring: 217 91% 60%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* Same values - dark mode only */
+    --background: 222 10% 8%;
+    --card: 222 10% 10%;
+    --popover: 222 10% 10%;
+    --foreground: 220 9% 98%;
+    --card-foreground: 220 9% 98%;
+    --popover-foreground: 220 9% 98%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 220 9% 98%;
+    --secondary: 222 10% 14%;
+    --secondary-foreground: 220 9% 98%;
+    --muted: 222 10% 14%;
+    --muted-foreground: 220 9% 62%;
+    --accent: 222 10% 16%;
+    --accent-foreground: 220 9% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 220 9% 98%;
+    --border: 222 10% 18%;
+    --input: 222 10% 18%;
+    --ring: 217 91% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: Geist, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Modern dark gradient background */
+    background: linear-gradient(135deg, #0f0f13 0%, #121416 25%, #1a1d23 50%, #121416 75%, #0f0f13 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer components {
+  /* Glassmorphism card effect */
+  .glass-card {
+    background: rgba(18, 20, 22, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  /* Liquid glass effect for interactive elements */
+  .liquid-glass {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+      0 4px 16px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .liquid-glass:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 
+      0 8px 24px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+  }
+
+  /* Modern gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Subtle glow effect */
+  .glow-effect {
+    box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+  }
+
+  /* Modern input styling */
+  .modern-input {
+    background: rgba(18, 20, 22, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .modern-input:focus {
+    border-color: rgba(102, 126, 234, 0.5);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    outline: none;
+  }
+
+  /* Mobile touch fixes */
+  button, a, input, select, textarea {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  /* Ensure buttons are always clickable on mobile */
+  button, .modern-button, .liquid-glass {
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  /* Fix for mobile form spacing */
+  form {
+    -webkit-user-agent-properties: none;
+  }
+
+  /* Ensure disabled buttons still show feedback on mobile */
+  button:disabled {
+    opacity: 0.5;
+  }
+
+  /* Modern button styling */
+  .modern-button {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.8) 0%, rgba(118, 75, 162, 0.8) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    overflow: visible;
+    position: relative;
+  }
+
+  .modern-button:hover {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.9) 0%, rgba(118, 75, 162, 0.9) 100%);
+    box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+  }
+
+  .modern-button:active {
+    transform: translateY(0);
+  }
+}
