@@ -43,45 +43,41 @@ A self-hosted web application for managing multiple Stremio accounts and their a
 
 ### Quick Start
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/GhostDragon5/stremio-account-manager
-   cd stremio-account-manager
-   ```
+1. **Download the files**
+   - [docker-compose.yml](./docker-compose.yml)
+   - [.env example](./backend/.env.example) → save as `backend/.env`
 
-2. **Create environment file**
-   ```bash
-   cp .env.example .env
-   ```
+2. **Configure backend/.env**
+   Set your secure keys:
 
-3. **Generate secure keys**
+   **Linux/Mac:**
    ```bash
-   # Generate JWT_SECRET (64 characters)
-   openssl rand -hex 32
-
-   # Generate ENCRYPTION_KEY (64 characters)
    openssl rand -hex 32
    ```
-   Add these to your `.env` file:
-   ```
-   JWT_SECRET=your-64-char-hex-key
-   ENCRYPTION_KEY=your-64-char-hex-key
+
+   **Windows (PowerShell):**
+   ```powershell
+   node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
    ```
 
-4. **Start the application**
+   Add these to `backend/.env`:
+   ```
+   JWT_SECRET=<your-key>
+   ENCRYPTION_KEY=<your-key>
+   PORT=5000
+   FRONTEND_URL=http://localhost:8080
+   ```
+
+3. **Start the application**
    ```bash
    docker-compose up -d
    ```
 
-5. **Access the app**
+4. **Access the app**
    - Frontend: http://localhost:8080
    - Backend API: http://localhost:5000
 
-### Default Credentials
-
-On first startup, an admin account is created:
-- **Username:** admin
-- **Password:** admin
+**Default credentials:** `admin` / `admin` - change immediately after first login.
 
 **:warning: Change the password immediately after first login!**
 
